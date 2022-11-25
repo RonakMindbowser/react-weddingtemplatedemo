@@ -1,0 +1,156 @@
+.secondheader-container {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    position: sticky;
+    /* padding: 30px 10px 30px 10px; */
+}
+
+.secondheader-leftcontainer {
+    flex: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.secondheader-rightcontainer {
+    flex: 40%;
+    display: flex;
+}
+
+.left-nav-wrap {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.empty-right-view {
+    /* flex: 20%; */
+}
+
+.secondheader-popover-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    align-items: flex-start;
+    padding: 10px 0px 10px 30px
+}
+
+.drawer-top-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.title-text {
+    color: rgba(21, 21, 21, 0.5);
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.facebook-text {
+    color: #ba7f32;
+    padding-top: 40px;
+}
+
+.drawer-image {
+    width: 90%;
+    height: 275px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.facebook-image-overlay {
+    background-color: rgba(0, 0, 0, 0.35);
+    position: absolute;
+    top: 0;
+    width: 90%;
+    height: 275px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fb-image-container {
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.getintouch-list-wrap {
+    display: flex;
+    margin-top: 10px;
+}
+
+.contact-list-wrap {
+    padding-bottom: 40px;
+    border-bottom: 0.5px lightgray solid;
+}
+
+.social-icon-wrap {
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+
+.left-drawer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-drawer-top-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 100px;
+    padding-bottom: 40px;
+}
+
+.left-drawer-navlist-wrap {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+}
+
+@media screen and (max-width:1150px) {
+
+    .secondheader-leftcontainer {
+        flex: 10%;
+    }
+
+    .empty-right-view {
+        display: none;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .empty-right-view {
+        display: none;
+    }
+
+    .secondheader-container {
+        justify-content: space-between;
+        padding: 10px 0px 0px 0px;
+    }
+
+    .secondheader-leftcontainer {
+        flex: none;
+    }
+
+    .secondheader-rightcontainer {
+        display: none;
+    }
+}
+
+@media screen and (max-width:768px) {}
+
+@media screen and (max-width:600px) {}
+
+@media screen and (max-width:300px) {}
