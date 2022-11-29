@@ -1,8 +1,8 @@
 import { Accordion, AccordionDetails, AccordionSummary, alpha, Badge, Box, Button, Container, CssBaseline, Divider, Drawer, Fade, Grow, IconButton, InputAdornment, Link, Menu, MenuItem, Popover, Slider, styled, TextField, Typography, useMediaQuery, Zoom } from "@mui/material";
 import { red } from "@mui/material/colors";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { AllIcons } from "../assets/icons";
+import { AllIcons } from "../../assets/icons";
 import './AppHeader.css'
 var drawerWidth = 500;
 // https://livedemo00.template-help.com/wt_prod-19846/images/slider-2-slide-2-1920x827.jpg
@@ -166,6 +166,7 @@ const AppHeader = () => {
     const [checked, setChecked] = React.useState(false);
 
     const [searchValue, setSearchValue] = useState("")
+    const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 100))
     const [navList, setNavList] = useState([
         {
             title: "Home",
@@ -284,6 +285,12 @@ const AppHeader = () => {
         setAnchorEl(event.currentTarget);
     };
 
+    useEffect(() => {
+        if (!isHideHeaderMenu) {
+            toggleLeftDrawer(false)
+            toggleRightDrawer(false)
+        }
+    }, [isHideHeaderMenu])
 
 
     const RenderLeftDrawerWrapper = () => {
@@ -297,7 +304,7 @@ const AppHeader = () => {
                     keepMounted: true, // Better open performance on mobile.
                 }}
                 sx={{
-                    // zIndex: -1,
+                    zIndex: 0,
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
                         width: 300,
@@ -310,6 +317,21 @@ const AppHeader = () => {
                 <RenderLeftDrawerContent />
             </Drawer>
         )
+    }
+
+    const toggleLeftDrawerView = (value, index) => {
+        let temp = navList
+        temp = temp.map((obj) => {
+            return {
+                ...obj,
+                showHiddenMenu: false
+            }
+        })
+        temp[index].showHiddenMenu = value
+        console.log("temp", temp)
+        setNavList(temp)
+        toggleZoomView(true)
+        setRandomNumber(Math.floor(Math.random() * 100))
     }
 
     const RenderLeftDrawerContent = () => {
@@ -358,45 +380,77 @@ const AppHeader = () => {
                                 <Box>
                                     <Button sx={{
                                         width: "100%",
-                                        backgroundColor: "transparent",
+                                        backgroundColor: index == 0 || obj.showHiddenMenu ? "lightcoral" : "transparent",
                                         alignItems: "center",
                                         justifyContent: "space-between",
                                         borderRadius: 0,
                                         '&:hover': {
                                             backgroundColor: "lightcoral",
                                             color: "white"
-                                        }
-                                    }}>
+                                        },
+                                        color: obj.showHiddenMenu ? "white" : "black",
+                                        height: "50px",
+                                    }}
+
+                                    >
                                         <Typography>
                                             {obj.title}
                                         </Typography>
                                         {
                                             obj.hasPopOver ?
                                                 <IconButton onClick={() => {
-                                                    let temp = navList
-                                                    temp.map((a) => a.showHiddenMenu = false)
-                                                    temp[index].showHiddenMenu = !temp[index].showHiddenMenu;
-                                                    console.log("temp", temp)
-                                                    setNavList(temp)
-                                                }}>
-                                                    <AllIcons.ExpandMoreIcon />
+                                                    toggleLeftDrawerView(!obj.showHiddenMenu, index)
+                                                }}
+                                                    sx={{
+                                                        color: obj.showHiddenMenu ? "white" : "black",
+                                                        '&:hover': {
+                                                            color: "white"
+                                                        },
+                                                    }}
+                                                >
+                                                    {obj.showHiddenMenu ? <AllIcons.ExpandLessIcon /> : <AllIcons.ExpandMoreIcon />}
                                                 </IconButton>
                                                 : null
                                         }
                                     </Button>
                                     {
                                         obj.showHiddenMenu ?
-                                            <div>
+                                            <Box sx={{
+
+                                            }}
+                                                onMouseLeave={() => {
+                                                    toggleLeftDrawerView(false, index)
+                                                }}
+                                            >
                                                 {
                                                     obj.list.map((obj2) => {
                                                         return (
-                                                            <Typography>
-                                                                {obj2.title}
-                                                            </Typography>
+                                                            <Button sx={{
+                                                                color: "black",
+                                                                mt: 1,
+                                                                mb: 1,
+                                                                width: "100%",
+                                                                backgroundColor: "transparent",
+                                                                display: "flex",
+                                                                justifyContent: "flex-start",
+                                                                pl: 2,
+                                                                pt: 1, pb: 1,
+                                                                borderRadius: 0,
+                                                                '&:hover': {
+                                                                    backgroundColor: "lightcoral",
+                                                                    color: "white"
+                                                                },
+                                                            }}>
+                                                                <Typography sx={{
+                                                                    fontSize: "14px"
+                                                                }}>
+                                                                    {obj2.title}
+                                                                </Typography>
+                                                            </Button>
                                                         )
                                                     })
                                                 }
-                                            </div>
+                                            </Box>
                                             : null
                                     }
                                 </Box>
@@ -429,7 +483,7 @@ const AppHeader = () => {
     const RenderRightDrawerContent = () => {
         return (
             <div>
-                <Container>
+                <Container sx={{ zIndex: 2 }}>
                     <div className="drawer-top-wrap">
                         <CustomTitle variant="h5">{"Get In Touch"}</CustomTitle>
                         <IconButton onClick={() => {
@@ -502,7 +556,7 @@ const AppHeader = () => {
     return (
         <React.Fragment>
             <Box className="secondheader-container" sx={{
-                zIndex: (theme) => theme.zIndex.drawer + 1
+                zIndex: 1
             }}>
                 <div className="secondheader-leftcontainer">
                     {isHideHeaderMenu ? <IconButton onClick={() => {

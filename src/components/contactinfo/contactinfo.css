@@ -1,0 +1,13 @@
+.email-input {
+    background-color: transparent;
+    border: none;
+    border-width: 0;
+    outline: none;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+::placeholder {
+    color: white;
+}

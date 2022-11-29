@@ -1,0 +1,10 @@
+.facebook-image-overlay {
+    background-color: rgba(0, 0, 0, 0.35);
+    position: absolute;
+    top: 0;
+    width: 370px;
+    height: 303px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

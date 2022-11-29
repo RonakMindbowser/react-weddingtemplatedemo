@@ -27,8 +27,9 @@ import NearMeIcon from '@mui/icons-material/NearMe';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
+import ScheduleIcon from '@mui/icons-material/Schedule';
 const icons = {
     TwitterIcon,
     GitHubIcon,
@@ -65,6 +66,8 @@ const icons = {
     ArrowBackIcon,
     ExpandMoreIcon,
     ArrowForwardIcon,
+    ExpandLessIcon,
+    ScheduleIcon,
 }
 export default icons;
 

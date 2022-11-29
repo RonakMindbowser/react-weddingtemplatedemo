@@ -1,0 +1,24 @@
+.img-wrapper {
+    border: 2px solid #fff;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+/* img.hover-zoom:hover {
+    transform: scale(0.9);
+} */
+.img-wrapper hover-zoom {
+    width: 100%;
+    height: auto;
+    transition: all 2s ease-in-out;
+}
+
+.img-wrapper:hover img {
+    transform: scale(0.9, 0.8);
+    cursor: pointer;
+}
+
+.image-hover:hover {
+    transform: scale(1.5);
+}

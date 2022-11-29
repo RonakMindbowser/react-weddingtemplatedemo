@@ -5,7 +5,7 @@ import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 import SecondAppMain from "./SecondAppMain";
 import CustomLoader from '../components/customloader/CustomLoader';
 
-let theme = createTheme({
+export let theme = createTheme({
     components: {
 
     },
@@ -19,17 +19,15 @@ theme = responsiveFontSizes(theme);
 
 const RootNavigation = () => {
     return (
-        <>
-            <div>
-                <ThemeProvider theme={theme}>
-                    <StyledEngineProvider injectFirst>
-                        <SecondAppMain />
-                        <ToastContainer autoClose={1000} />
-                        <CustomLoader />
-                    </StyledEngineProvider>
-                </ThemeProvider>
-            </div>
-        </>
+        <div>
+            <ThemeProvider theme={theme}>
+                <StyledEngineProvider injectFirst>
+                    <SecondAppMain />
+                    <ToastContainer autoClose={1000} />
+                    <CustomLoader />
+                </StyledEngineProvider>
+            </ThemeProvider>
+        </div>
     )
 }
 export default RootNavigation;
