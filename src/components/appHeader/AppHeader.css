@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: row;
     background-color: white;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     /* padding: 30px 10px 30px 10px; */
 }
 
@@ -12,6 +13,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.app-header-top-light {}
 
 .secondheader-rightcontainer {
     flex: 40%;
@@ -38,7 +41,7 @@
     flex-direction: column;
     width: 250px;
     align-items: flex-start;
-    padding: 10px 0px 10px 30px
+    padding: 10px 0px 10px 30px;
 }
 
 .drawer-top-wrap {

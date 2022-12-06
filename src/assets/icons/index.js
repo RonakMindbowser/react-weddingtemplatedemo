@@ -30,6 +30,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ScheduleIcon from '@mui/icons-material/Schedule';
+import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 const icons = {
     TwitterIcon,
     GitHubIcon,
@@ -68,6 +70,8 @@ const icons = {
     ArrowForwardIcon,
     ExpandLessIcon,
     ScheduleIcon,
+    HorizontalRuleIcon,
+    TrendingFlatIcon,
 }
 export default icons;
 

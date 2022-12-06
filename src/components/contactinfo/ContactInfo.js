@@ -2,6 +2,7 @@ import { Box, Button, Container, Divider, Grid, Grow, IconButton, styled, Typogr
 import React, { useState } from 'react'
 import { AllIcons } from '../../assets/icons'
 import { theme } from '../../navigator/RootNavigation'
+import { makeStyles } from '@mui/styles';
 import './contactinfo.css'
 const CustomTitle = styled(Typography)(({ theme }) => ({
     color: "white",
@@ -28,6 +29,20 @@ const DescriptionText = styled(Typography)(({ theme }) => ({
     opacity: 0.5,
     marginTop: "16px",
 }));
+
+const useStyles = makeStyles((theme) => ({
+    leftview: {
+        animation: '2s leftview',
+    },
+    '@keyframes leftview': {
+        'from': {
+            marginLeft: '100%'
+        },
+        'to': {
+            marginLeft: '0%'
+        }
+    }
+}))
 
 function ContactInfo() {
     const [email, setEmail] = useState("");
@@ -60,6 +75,7 @@ function ContactInfo() {
             icon: AllIcons.GoogleIcon,
         },
     ]
+    const style = useStyles()
     return (
         <Box sx={{
             backgroundColor: "#2b2a28",
@@ -76,7 +92,8 @@ function ContactInfo() {
                     }}
                 >
                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
-                        <Box sx={{ width: 0.8 }}>
+                        <div className='contact-left'>
+                            {/* <Box sx={{ width: 0.8 }} > */}
                             <Box sx={{ display: "flex" }}>
                                 <AllIcons.VolunteerActivismIcon sx={{ marginRight: "10px", color: 'white', fontSize: "40px" }} />
                                 <CustomTitle variant="h4">{"Lovely's"}<br />
@@ -118,135 +135,140 @@ function ContactInfo() {
                                     }
                                 }}>{"4730 Crystal Springs Dr, Los Angeles, CA 90027"}</ContactText>
                             </Box>
-                        </Box>
+                            {/* </Box> */}
+                        </div>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
-                        <Box sx={{ mt: 1 }}>
-                            <HeaderText>{"NEWSLETTER"}</HeaderText>
-                            <DescriptionText>{"Join our email list for useful information."}</DescriptionText>
-                            <Box sx={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                backgroundColor: "#41403e",
-                                pt: 2.5,
-                                pb: 2.5,
-                                width: 1,
-                                mt: 2,
-                                textAlign: "center"
-                            }}>
-                                <input
-                                    value={email}
-                                    type={'email'}
-                                    autoFocus
-                                    className={'email-input'}
-                                    onChange={(text) => setEmail(text.target.value)}
-                                    placeholder={'Enter your email'}
-                                />
-                            </Box>
-                            <Button sx={{
-                                color: "white",
-                                backgroundColor: "red",
-                                width: 1,
-                                mt: 1,
-                                pt: 2.5,
-                                pb: 2.5,
-                                textAlign: "center",
-                                '&:hover': {
-                                    backgroundColor: "white",
-                                    color: "red"
-                                },
-                            }}>
-                                <Typography sx={{
-                                    fontSize: "14px"
-                                }}>{"Subscribe"}</Typography>
-                            </Button>
-                            <Box sx={{ display: "flex", color: "white", pt: 5, alignItems: "center" }}>
-                                <Typography>{'Follow Us'}</Typography>
+                        <div className='contact-mid'>
+                            <Box sx={{ mt: 1 }}>
+                                <HeaderText>{"NEWSLETTER"}</HeaderText>
+                                <DescriptionText>{"Join our email list for useful information."}</DescriptionText>
                                 <Box sx={{
-                                    ml: 2,
                                     display: "flex",
-                                    justifyContent: "space-around",
-                                    width: 0.4,
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    backgroundColor: "#41403e",
+                                    pt: 2.5,
+                                    pb: 2.5,
+                                    width: 1,
+                                    mt: 2,
+                                    textAlign: "center"
                                 }}>
+                                    <input
+                                        value={email}
+                                        type={'email'}
+                                        autoFocus
+                                        className={'email-input'}
+                                        onChange={(text) => setEmail(text.target.value)}
+                                        placeholder={'Enter your email'}
+                                    />
+                                </Box>
+                                <Button sx={{
+                                    color: "white",
+                                    backgroundColor: "red",
+                                    width: 1,
+                                    mt: 1,
+                                    pt: 2.5,
+                                    pb: 2.5,
+                                    textAlign: "center",
+                                    '&:hover': {
+                                        backgroundColor: "white",
+                                        color: "red"
+                                    },
+                                }}>
+                                    <Typography sx={{
+                                        fontSize: "14px"
+                                    }}>{"Subscribe"}</Typography>
+                                </Button>
+                                <Box sx={{ display: "flex", color: "white", pt: 5, alignItems: "center" }}>
+                                    <Typography>{'Follow Us'}</Typography>
+                                    <Box sx={{
+                                        ml: 2,
+                                        display: "flex",
+                                        justifyContent: "space-around",
+                                        width: 0.4,
+                                    }}>
+                                        {
+                                            soicalIconList.map((obj) => {
+                                                return (
+                                                    <IconButton sx={{ color: "white", "&:hover": { color: "red" } }}>
+                                                        <obj.icon />
+                                                    </IconButton>
+                                                )
+                                            })
+                                        }
+                                    </Box>
+                                </Box>
+                            </Box>
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} sm={8} md={4} lg={4} xl={4} >
+                        <div className='contact-right'>
+                            <Box sx={{ mt: 1, ml: 2 }}>
+                                <HeaderText>{"INSTAGRAM"}</HeaderText>
+                                <Grid container spacing={2} rowSpacing={2} columnSpacing={2} sx={{ mt: 2 }}>
                                     {
-                                        soicalIconList.map((obj) => {
+                                        instaList.map((obj, index) => {
                                             return (
-                                                <IconButton sx={{ color: "white", "&:hover": { color: "red" } }}>
-                                                    <obj.icon />
-                                                </IconButton>
+                                                <Grid item key={obj} xs={3} sm={3} lg={6} md={6} xl={6} sx={{}}>
+                                                    <div onMouseEnter={() => {
+                                                        console.log("enter mouse")
+                                                        let temp = instaList;
+                                                        temp = temp.map((obj1) => {
+                                                            return {
+                                                                ...obj1,
+                                                                show: false
+                                                            }
+                                                        })
+                                                        temp[index].show = true;
+                                                        setInstaList(temp)
+                                                        setRandomNumber(Math.floor(Math.random() * 100))
+                                                    }}
+                                                        onMouseLeave={() => {
+                                                            console.log("leave mouse")
+                                                            console.log("enter mouse")
+                                                            let temp = instaList;
+                                                            temp[index].show = false;
+                                                            setInstaList(temp)
+                                                            setRandomNumber(Math.floor(Math.random() * 100))
+                                                        }}>
+                                                        <Box sx={{
+                                                            display: "flex",
+                                                            alignItems: "center", justifyContent: "center", position: "relative",
+                                                        }}>
+                                                            <img src={obj.insta_image_url} className="img-thumbnail w-100 p-0" />
+                                                            <Grow
+                                                                in={obj.show}
+                                                                style={{ transformOrigin: '0 0 0 0' }}
+                                                                {...(obj.show ? { timeout: 1000 } : {})}
+                                                            >
+                                                                <Box sx={{
+                                                                    backgroundColor: "rgba(0, 0, 0, 0.3)",
+                                                                    display: "flex",
+                                                                    alignItems: "center",
+                                                                    justifyContent: "center",
+                                                                    position: "absolute",
+                                                                    height: "100%",
+                                                                    width: "100%"
+                                                                }}>
+                                                                    <Button sx={{
+                                                                        display: "flex",
+                                                                        flexDirection: "column",
+                                                                        alignItems: "center"
+                                                                    }}>
+                                                                        <AllIcons.ZoomInIcon htmlColor={'white'} sx={{ fontSize: 40 }} />
+                                                                    </Button>
+                                                                </Box>
+                                                            </Grow>
+                                                        </Box>
+                                                    </div>
+                                                </Grid>
                                             )
                                         })
                                     }
-                                </Box>
+                                </Grid>
                             </Box>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={12} sm={8} md={4} lg={4} xl={4} >
-                        <Box sx={{ mt: 1, ml: 2 }}>
-                            <HeaderText>{"INSTAGRAM"}</HeaderText>
-                            <Grid container spacing={2} rowSpacing={2} columnSpacing={2} sx={{ mt: 2 }}>
-                                {
-                                    instaList.map((obj, index) => {
-                                        return (
-                                            <Grid item key={obj} xs={3} sm={3} lg={6} md={6} xl={6} sx={{}}>
-                                                <div onMouseEnter={() => {
-                                                    console.log("enter mouse")
-                                                    let temp = instaList;
-                                                    temp = temp.map((obj1) => {
-                                                        return {
-                                                            ...obj1,
-                                                            show: false
-                                                        }
-                                                    })
-                                                    temp[index].show = true;
-                                                    setInstaList(temp)
-                                                    setRandomNumber(Math.floor(Math.random() * 100))
-                                                }}
-                                                    onMouseLeave={() => {
-                                                        console.log("leave mouse")
-                                                        console.log("enter mouse")
-                                                        let temp = instaList;
-                                                        temp[index].show = false;
-                                                        setInstaList(temp)
-                                                        setRandomNumber(Math.floor(Math.random() * 100))
-                                                    }}>
-                                                    <Box sx={{
-                                                        display: "flex",
-                                                        alignItems: "center", justifyContent: "center", position: "relative",
-                                                    }}>
-                                                        <img src={obj.insta_image_url} className="img-thumbnail w-100 p-0" />
-                                                        <Grow
-                                                            in={obj.show}
-                                                            style={{ transformOrigin: '0 0 0 0' }}
-                                                            {...(obj.show ? { timeout: 1000 } : {})}
-                                                        >
-                                                            <Box sx={{
-                                                                backgroundColor: "rgba(0, 0, 0, 0.3)",
-                                                                display: "flex",
-                                                                alignItems: "center",
-                                                                justifyContent: "center",
-                                                                position: "absolute",
-                                                                height: "100%",
-                                                                width: "100%"
-                                                            }}>
-                                                                <Button sx={{
-                                                                    display: "flex",
-                                                                    flexDirection: "column",
-                                                                    alignItems: "center"
-                                                                }}>
-                                                                    <AllIcons.ZoomInIcon htmlColor={'white'} sx={{ fontSize: 40 }} />
-                                                                </Button>
-                                                            </Box>
-                                                        </Grow>
-                                                    </Box>
-                                                </div>
-                                            </Grid>
-                                        )
-                                    })
-                                }
-                            </Grid>
-                        </Box>
+                        </div>
                     </Grid>
                 </Grid>
             </Container>

@@ -1,0 +1,21 @@
+.list-image {}
+
+.bulletlist {
+    height: 12px;
+    width: 12px;
+    border-radius: 0px;
+    background-color: red;
+}
+
+.swiper-custom {
+    background-color: rebeccapurple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.divider-separator {
+    border-top: 0.5px solid gray;
+    width: 100%;
+}

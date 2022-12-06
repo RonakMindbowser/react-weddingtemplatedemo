@@ -11,3 +11,51 @@
 ::placeholder {
     color: white;
 }
+
+.contact-left {
+    animation: 2s contact-left;
+    width: 80%;
+    background-color: "#2b2a28";
+}
+
+@keyframes contact-left {
+    from {
+        margin-left: 80%;
+    }
+
+    to {
+        margin-left: 0%;
+    }
+}
+
+.contact-mid {
+    animation: 3s contact-mid;
+    width: 100%;
+    background-color: "#2b2a28";
+}
+
+@keyframes contact-mid {
+    from {
+        margin-top: -100%;
+    }
+
+    to {
+        margin-top: 0%;
+    }
+}
+
+.contact-right {
+    animation: 2s contact-right;
+    width: 100%;
+    background-color: "#2b2a28";
+}
+
+@keyframes contact-right {
+    from {
+        margin-left: -50%;
+    }
+
+    to {
+        margin-left: 0%;
+    }
+}

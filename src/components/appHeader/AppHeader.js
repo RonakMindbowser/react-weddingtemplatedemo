@@ -8,7 +8,7 @@ var drawerWidth = 500;
 // https://livedemo00.template-help.com/wt_prod-19846/images/slider-2-slide-2-1920x827.jpg
 // https://livedemo00.template-help.com/wt_prod-19846/images/slider-2-slide-1-1920x827.jpg
 
-const CustomLink = styled(Link)(({ theme }) => ({
+const CustomLink = styled(Button)(({ theme }) => ({
     color: "black",
     textTransform: "uppercase",
     fontWeight: "500",
@@ -16,7 +16,7 @@ const CustomLink = styled(Link)(({ theme }) => ({
     width: '100px',
 }));
 
-const CustomActiveLink = styled(Link)(({ theme }) => ({
+const CustomActiveLink = styled(Button)(({ theme }) => ({
     color: 'red',
     textTransform: "uppercase",
     fontWeight: "500",
@@ -158,6 +158,7 @@ const AppHeader = () => {
     const isHideHeaderMenu = useMediaQuery('(max-width:992px)')
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [activeHoverIndex, setActiveHoverIndex] = useState(2)
+    const [headerClass, setHeaderclass] = useState(false);
 
     const [showZoomView, toggleZoomView] = useState(false)
 
@@ -229,12 +230,36 @@ const AppHeader = () => {
             id: "contactus",
             routeName: "contactus"
         },
+        {
+            title: "Pages",
+            id: "pages",
+            routeName: "workshop",
+            // hasPopOver: true,
+        },
     ]);
 
     const handleChange = () => {
         setChecked((prev) => !prev);
     };
+    const handlScrollListener = () => {
+        console.log('event on scroll sc', window.scrollY);
+        if (window.scrollY > 50) {
+            // setHeaderclass('app-header-top app-header-top-light')
+            setHeaderclass(true)
+        }
+        else {
+            // setHeaderclass('app-header-top')
+            setHeaderclass(false)
+        }
+    }
 
+    useEffect(() => {
+        window.addEventListener('scroll', handlScrollListener)
+
+        return () => {
+            window.removeEventListener("scroll", handlScrollListener)
+        }
+    }, [])
     const getInTouchList = [
         {
             text: "+1 323-913-4688",
@@ -555,7 +580,7 @@ const AppHeader = () => {
     console.log("location::", location);
     return (
         <React.Fragment>
-            <Box className="secondheader-container" sx={{
+            <Box className={headerClass ? "secondheader-container app-header-top-light" : "secondheader-container"} sx={{
                 zIndex: 1
             }}>
                 <div className="secondheader-leftcontainer">
@@ -619,15 +644,20 @@ const AppHeader = () => {
                                         onClick={() => {
                                             navigation(obj.routeName)
                                         }}
+                                        sx={
+                                            headerClass ? {
+                                                height: "60px",
+                                                transition: 'height 0.10s ease-in',
+                                            }
+                                                : {
+                                                    height: "100px",
+                                                    transition: 'height 0.10s ease-out',
+                                                }
+                                        }
                                         onMouseEnter={(event) => {
                                             if (obj.hasPopOver) {
                                                 setActiveHoverIndex(i)
                                                 handlePopoverOpen(event)
-                                            }
-                                        }}
-                                        onMouseLeave={(event) => {
-                                            if (obj.hasPopOver) {
-                                                handlePopoverClose(event)
                                             }
                                         }}
                                         component="button"
@@ -649,11 +679,22 @@ const AppHeader = () => {
                                                 handlePopoverOpen(event)
                                             }
                                         }}
-                                        onMouseLeave={(event) => {
-                                            if (obj.hasPopOver) {
-                                                handlePopoverClose(event)
+                                        sx={
+                                            headerClass ? {
+                                                height: "60px",
+                                                transition: 'height 0.10s ease-in',
+                                                '&:hover': {
+                                                    color: "red"
+                                                },
                                             }
-                                        }}
+                                                : {
+                                                    height: "100px",
+                                                    transition: 'height 0.10s ease-out',
+                                                    '&:hover': {
+                                                        color: "red"
+                                                    },
+                                                }
+                                        }
                                     >
                                         {obj.title}</CustomLink>
                                 )
@@ -663,7 +704,8 @@ const AppHeader = () => {
                     <Popover
                         id="mouse-over-popover"
                         sx={{
-                            pointerEvents: 'none',
+                            // pointerEvents: 'none',
+                            width: '100%'
                         }}
                         components={Fade}
                         open={open}
@@ -678,20 +720,50 @@ const AppHeader = () => {
                         }}
                         onClose={handlePopoverClose}
                         disableRestoreFocus
+                        closeAfterTransition
                     >
-                        <div className="secondheader-popover-wrap">
+                        <div className="secondheader-popover-wrap"
+                            onMouseLeave={(event) => {
+                                handlePopoverClose(event)
+                            }}
+                        >
                             {
-                                navList[activeHoverIndex].list.map((obj) => {
-                                    return (
-                                        <PopOverLink
-                                            component="button"
-                                            underline="none"
-                                            onClick={() => {
-                                            }}
-                                        >
-                                            {obj.title}</PopOverLink>
-                                    )
-                                })
+                                activeHoverIndex == navList.length - 1 ? (
+                                    <Box sx={{ display: "flex", width: 1 }}>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                        <Typography color={'red'}>Text</Typography>
+                                    </Box>
+                                )
+                                    :
+                                    navList[activeHoverIndex].list.map((obj) => {
+                                        return (
+                                            <PopOverLink
+                                                component="button"
+                                                underline="none"
+                                                onClick={() => {
+                                                }}
+                                            >
+                                                {obj.title}</PopOverLink>
+                                        )
+                                    })
                             }
                         </div>
                     </Popover>
